@@ -18,13 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor redColor];
-    //
-    _moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
-    _moviePlayer.shouldAutoplay = YES;
-//    _moviePlayer.repeatMode = MPMovieRepeatModeOne;
-//    [_moviePlayer setFullscreen:YES animated:YES];
-//    _moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
-//    
+      
     //播放
     [self.moviePlayer play];
     
