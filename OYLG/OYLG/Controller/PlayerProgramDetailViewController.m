@@ -10,6 +10,7 @@
 #import "UIImageView+WebCache.h"
 #import "DotaVideoURLModel.h"
 #import "PlayerViewController.h"
+#import "AppDelegate.h"
 
 @interface PlayerProgramDetailViewController ()
 
@@ -59,8 +60,17 @@
     PlayerViewController * player = [[PlayerViewController alloc] init];
     player.URLString = url;
     
+    //找到入口类
+    player.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    
+    //通过入口类的ViewController调用present方法
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    
+  
+    [appDelegate.window.rootViewController presentViewController:player animated:YES completion:nil];
     // push 播放器
-    [self presentViewController:player animated:YES completion:nil];
+//    [self presentViewController:player animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

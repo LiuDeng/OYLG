@@ -49,7 +49,7 @@
 // 支持设备自动旋转
 - (BOOL)shouldAutorotate
 {
-    return YES;
+    return NO;
 }
 // 支持屏幕方向
 - (NSUInteger)supportedInterfaceOrientations

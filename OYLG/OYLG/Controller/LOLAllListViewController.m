@@ -34,6 +34,15 @@
     self.rv = [[PlayerList alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.view = _rv;
 }
+- (void)viewWillAppear:(BOOL)animated {
+    
+    if (self.rv.mainScroll.contentOffset.x == 0) {
+        self.rv.seg.selectedSegmentIndex = 0;
+    } else {
+        self.rv.seg.selectedSegmentIndex = 1;
+    }
+    
+}
 
 // 加载数据重新布局.
 -(void)loadData {

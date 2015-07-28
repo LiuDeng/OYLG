@@ -33,6 +33,16 @@
 {
     self.rv = [[PlayerList alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.view = _rv;
+    
+}
+- (void)viewWillAppear:(BOOL)animated {
+    
+    if (self.rv.mainScroll.contentOffset.x == 0) {
+        self.rv.seg.selectedSegmentIndex = 0;
+    } else {
+        self.rv.seg.selectedSegmentIndex = 1;
+    }
+    
 }
 
 // 加载数据重新布局.
@@ -56,7 +66,7 @@
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
-    self.rv.seg.selectedSegmentIndex = 0;
+    
     [self.rv.seg addTarget:self action:@selector(segAction:) forControlEvents:(UIControlEventValueChanged)];
     
     // 将这两个 tableview 的代理都设置成自己.
