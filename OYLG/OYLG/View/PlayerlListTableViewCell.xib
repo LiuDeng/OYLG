@@ -15,14 +15,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y5f-Db-WRL">
-                        <rect key="frame" x="8" y="13" width="100" height="73"/>
+                        <rect key="frame" x="8" y="13" width="80" height="73"/>
                         <color key="backgroundColor" red="0.80000001190000003" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="100" id="TVK-Nk-yPn"/>
+                            <constraint firstAttribute="width" constant="80" id="TVK-Nk-yPn"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKh-v2-wug">
-                        <rect key="frame" x="116" y="76" width="196" height="10"/>
+                        <rect key="frame" x="96" y="76" width="216" height="10"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="10" id="yTb-qZ-71m"/>
                         </constraints>
@@ -31,7 +31,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TsS-T0-QGJ">
-                        <rect key="frame" x="116" y="13" width="196" height="58"/>
+                        <rect key="frame" x="96" y="13" width="216" height="58"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>

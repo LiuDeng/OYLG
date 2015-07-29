@@ -1,5 +1,5 @@
 //
-//  PlayerListViewController.h
+//  LOLAllListViewController.h
 //  OYLG
 //
 //  Created by 李志强 on 15/7/27.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DotaAllListViewController : UIViewController
-{
-    UIImageView     *backgroundImgView;
-}
+@interface LOLAllListViewController : UIViewController
+
 @end

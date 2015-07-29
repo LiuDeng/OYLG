@@ -13,7 +13,10 @@
 @property(nonatomic,strong)NSString * author;
 @property(nonatomic,strong)NSString * title;
 @property(nonatomic,strong)NSString * time;
-@property(nonatomic,strong)NSString * date;
+@property(nonatomic,strong)NSString * date1;
 @property(nonatomic,strong)NSString * id;
 +(NSMutableArray *) loadLOLSomeOneProgramList:(NSString *)aId;
+
++(NSMutableArray *) loadLOLSomeOneProgramListMoreData:(NSString *)aId index:(NSInteger)index;
+
 @end

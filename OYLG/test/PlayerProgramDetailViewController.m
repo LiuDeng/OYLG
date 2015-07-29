@@ -10,6 +10,7 @@
 #import "UIImageView+WebCache.h"
 #import "DotaVideoURLModel.h"
 #import "PlayerViewController.h"
+#import "AppDelegate.h"
 
 @interface PlayerProgramDetailViewController ()
 
@@ -18,6 +19,11 @@
 @implementation PlayerProgramDetailViewController
 
 - (void)viewDidLoad {
+    
+//===============10.1
+    self.view.backgroundColor = [UIColor blackColor];
+    
+    
     [super viewDidLoad];
     self.videoTitle.text = _detailData.title;
     self.videoTitle.numberOfLines =0;
@@ -28,15 +34,7 @@
     self.Dtime.textAlignment = NSTextAlignmentCenter;
 
     self.UpdateTime.text = _detailData.date1;
-    
-    self.navigationItem.leftBarButtonItem  = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:(UIBarButtonItemStylePlain) target:self action:@selector(leftAction:)];
 }
-
--(void)leftAction:(UIBarButtonItem *)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (IBAction)flvAction:(id)sender {
     // 由数据模型取请求数据.返回 URL.
     // 数据模型根据传入的 flv 和 _detailData 的 id 一起去请求一个 url.
@@ -67,8 +65,17 @@
     PlayerViewController * player = [[PlayerViewController alloc] init];
     player.URLString = url;
     
+    //找到入口类
+    player.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    
+    //通过入口类的ViewController调用present方法
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    
+  
+    [appDelegate.window.rootViewController presentViewController:player animated:YES completion:nil];
     // push 播放器
-    [self presentViewController:player animated:YES completion:nil];
+//    [self presentViewController:player animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

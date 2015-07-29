@@ -29,39 +29,47 @@
 
 -(void)loadView
 {
-    self.pullTableView = [[PullTableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-20 - 44 -49)];
+    // navigation View 原点
+    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    // 替换tableView
+    self.pullTableView = [[PullTableView alloc] init];
+    self.pullTableView.frame = kNavigationFrame;
     self.tableView = _pullTableView;
+    
+    //=================================
+    // 设置tableView出现时的背景图 (为了解决页面跳转是出现卡顿现象)
+    backgroundImgView = [[UIImageView alloc] initWithFrame:kScreenFrame];
+    backgroundImgView.image = [UIImage imageNamed:@"background"];
+    UIView *alphView = [[UIView alloc] initWithFrame:kScreenFrame];
+    alphView.backgroundColor = kBackbroundColorAlpha;
+    [backgroundImgView addSubview:alphView];
+    self.pullTableView.backgroundColor = [UIColor clearColor];
+    self.pullTableView.backgroundView = backgroundImgView;
+    self.pullTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //=================================
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    //=================================
-    // 移除界面
-    if ([self.view.subviews[0] tag] == 300) {
-        [self.view.subviews[0] removeFromSuperview];
-    }
-
-    // Dota界面背景图
-    UIImageView *backgroudImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
-    backgroudImg.image = [UIImage imageNamed:@"background"];
-    UIView *alphView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
-    alphView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
-    [backgroudImg addSubview:alphView];
-    [self.navigationController.view addSubview:backgroudImg];
-    [self.navigationController.view sendSubviewToBack:backgroudImg];
     
-    self.tableView.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
+   
+    // 移除tableView.bacbroundView图显示navigation.View.backgroundView
+    self.pullTableView.backgroundView = nil;
+    
+    // 设置
+    self.pullTableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
     
     // 界面出现之后,加载数据,菊花已经飞起.
     [self loadData:_aId];
     [_hud removeFromSuperview];
-    //=================================
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // 注册 cell 之类的东西.
-    [self.tableView registerNib:[UINib nibWithNibName:@"PlayerlListTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    [self.pullTableView registerNib:[UINib nibWithNibName:@"PlayerlListTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     
     // 重写左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:(UIBarButtonItemStyleDone) target:self action:@selector(leftBarButtonAction:)];
@@ -93,7 +101,7 @@
 -(void)loadData:(NSString *)aId
 {
     _dataArray = [DotaSomeOneProgramListModel loadDotaSomeOneProgramList:aId];
-    [self.tableView reloadData];
+    [self.pullTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -120,13 +128,15 @@
     cell.nameLabel.text = [_dataArray[indexPath.row] title];
     cell.nameLabel.numberOfLines = 0;
     
-    cell.detailLabel.text = [_dataArray[indexPath.row] date];
+    cell.detailLabel.text = [_dataArray[indexPath.row] date1];
 
     // cell选中时的样式
     cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
     cell.selectedBackgroundView.backgroundColor = [UIColor blackColor];
     cell.selectedBackgroundView.alpha = 0.8;
 
+    
+    
     return cell;
 }
 
@@ -140,7 +150,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    return 80;
 }
 
 // 实现返回按钮
@@ -156,8 +166,7 @@
 #pragma mark开始上拉加载数据的代理方法.
 - (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView
 {
-     self.pullTableView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight - 20 - 44 - 49);
-    
+    self.pullTableView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight - 20 - 44 - 49);
     [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
 }
 - (void)refreshTable
@@ -170,7 +179,7 @@
 // 上拉加载数据.
 - (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView
 {
-    self.pullTableView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight-20 - 44 -49);
+    self.pullTableView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight - 20 - 44 - 49);
     [self loadData:_aId];
     [self performSelector:@selector(loadMoreDataToTable) withObject:nil afterDelay:1.0f];
 }

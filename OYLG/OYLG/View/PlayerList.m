@@ -24,7 +24,7 @@
     
     // UIScrollView
     self.mainScroll = [[UIScrollView alloc] init];
-    _mainScroll.backgroundColor = [UIColor colorWithWhite:0 alpha:0.6];
+    _mainScroll.backgroundColor = [UIColor clearColor];
     _mainScroll.showsVerticalScrollIndicator = YES;
     _mainScroll.contentSize = CGSizeMake(CGRectGetHeight(_mainScroll.frame), 2 * kScreenWidth);
     _mainScroll.scrollEnabled = NO;
@@ -41,12 +41,11 @@
     
     // playerTableView
     self.playerTableView = [[UITableView alloc] init];
-    
     _playerTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_mainScroll addSubview:_playerTableView];
     //======================
     // 背景色
-    _playerTableView.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
+    _playerTableView.backgroundColor = [UIColor clearColor];
     _playerTableView.showsVerticalScrollIndicator = YES;
     _playerTableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
     //======================
@@ -58,7 +57,7 @@
     self.eventTableView = [[UITableView alloc] init];
     //======================
     // 背景色
-    _eventTableView.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
+    _eventTableView.backgroundColor = [UIColor clearColor];
     [_mainScroll addSubview:_eventTableView];
     _eventTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _eventTableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
@@ -70,7 +69,7 @@
 }
 - (void)layoutSubviews {
     self.seg.selectedSegmentIndex = 0;
-    _mainScroll.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-20 - 44 -49);
+    _mainScroll.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-20 - 44 - 49);
     _playerTableView.frame = CGRectMake(0, 0, kScreenWidth, CGRectGetHeight(self.mainScroll.frame));
     _eventTableView.frame = CGRectMake(kScreenWidth, 0, kScreenWidth, CGRectGetHeight(self.mainScroll.frame));
 

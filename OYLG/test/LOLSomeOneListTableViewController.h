@@ -11,9 +11,6 @@
 typedef void(^popToSuperView)();
 
 @interface LOLSomeOneListTableViewController : UITableViewController
-{
-    UIImageView     *backgroundImgView;
-}
 @property(nonatomic,strong)NSString * aId;
 @property(nonatomic,copy)popToSuperView block;
 @end

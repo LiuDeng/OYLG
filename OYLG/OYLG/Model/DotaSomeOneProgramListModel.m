@@ -82,7 +82,13 @@
     
     return dotaSomeOneProgramListArray;
 }
-
+//==========10.1
+- (void)setValue:(id)value forKey:(NSString *)key {
+    [super setValue:value forKey:key];
+    if ([key isEqualToString:@"date"]) {
+        _date1 = value;
+    }
+}
 
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key {
     

@@ -33,6 +33,16 @@
 {
     self.rv = [[PlayerList alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.view = _rv;
+    //=================================
+    // 设置tableView的背景图
+    backgroundImgView = [[UIImageView alloc] initWithFrame:kScreenFrame];
+    backgroundImgView.image = [UIImage imageNamed:@"background"];
+    UIView *alphView = [[UIView alloc] initWithFrame:kScreenFrame];
+    alphView.backgroundColor = kBackbroundColorAlpha;
+    [backgroundImgView addSubview:alphView];
+    [self.navigationController.view addSubview:backgroundImgView];
+    [self.navigationController.view sendSubviewToBack:backgroundImgView];
+    //=================================
     
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -54,15 +64,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.navigationItem.titleView = self.rv.seg;
-
-    // DOta界面背景图
-    UIImageView *backgroudImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, -64, kScreenWidth, kScreenHeight)];
-    backgroudImg.image = [UIImage imageNamed:@"background"];
-    [self.view addSubview:backgroudImg];
-    [self.rv sendSubviewToBack:backgroudImg];
-
-    // 通过 seg 来判断显示哪个 tabelview.
+    
+    // navigation View 原点
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
@@ -190,18 +195,7 @@
             _rv.mainScroll.contentOffset = CGPointMake(kScreenWidth, 0);
         };
     }
-    //=================================
-    UIImageView *backgroudImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, -64, kScreenWidth, kScreenHeight)];
-    backgroudImg.image = [UIImage imageNamed:@"background"];
-    UIView *alphView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
-    alphView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
-    [backgroudImg addSubview:alphView];
-    backgroudImg.tag = 300;
-    [playerProgramListVC.view addSubview:backgroudImg];
-    [playerProgramListVC.view sendSubviewToBack:backgroudImg];
-    playerProgramListVC.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
-    //=================================
     
     [self.navigationController pushViewController:playerProgramListVC animated:YES];
 }
@@ -213,7 +207,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 120;
+    return 100;
 }
 
 

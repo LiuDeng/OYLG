@@ -43,6 +43,7 @@
     }
     
 }
+
 // 加载数据重新布局.
 -(void)loadData {
     self.dataArray = [LOLAllListModel loadLOLAllList]; 
@@ -52,12 +53,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //lol界面背景图
-    UIImageView *backgroudImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, -64, kScreenWidth, kScreenHeight)];
-    backgroudImg.image = [UIImage imageNamed:@"lol2"];
-    [self.view addSubview:backgroudImg];
-    [self.rv sendSubviewToBack:backgroudImg];
-    
     self.navigationItem.titleView = self.rv.seg;
     
     // 通过 seg 来判断显示哪个 tabelview.
@@ -144,30 +139,12 @@
         [cell.userImageView sd_setImageWithURL:[NSURL URLWithString:[_dataArray[indexPath.row+2] icon]] placeholderImage:[UIImage imageNamed:@"0"]];
         cell.nameLabel.text = [_dataArray[indexPath.row+2] name];
         cell.detailLabel.text = [_dataArray[indexPath.row+2] detail];
-        
-        cell.userImageView.layer.cornerRadius = 10;
-        cell.userImageView.layer.masksToBounds = YES;
-        
-        // cell选中时的样式
-        cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
-        cell.selectedBackgroundView.backgroundColor = [UIColor blackColor];
-        cell.selectedBackgroundView.alpha = 0.8;
-        
         return cell;
     }else {
         PlayerlListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"event"];
         [cell.userImageView sd_setImageWithURL:[NSURL URLWithString:[_dataArray[indexPath.row] icon]] placeholderImage:[UIImage imageNamed:@"0"]];
         cell.nameLabel.text = [_dataArray[indexPath.row] name];
         cell.detailLabel.text = [_dataArray[indexPath.row] detail];
-        
-        // cell选中时的样式
-        cell.userImageView.layer.cornerRadius = 10;
-        cell.userImageView.layer.masksToBounds = YES;
-        
-        cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
-        cell.selectedBackgroundView.backgroundColor = [UIColor blackColor];
-        cell.selectedBackgroundView.alpha = 0.8;
-        
         return cell;
     }
 }
@@ -179,7 +156,6 @@
     
     if (tableView.tag == 119) {
         playerProgramListVC.aId = [_dataArray[indexPath.row+2] id];
-        
     }else {
         playerProgramListVC.aId = [_dataArray[indexPath.row] id];
         playerProgramListVC.block = ^(){

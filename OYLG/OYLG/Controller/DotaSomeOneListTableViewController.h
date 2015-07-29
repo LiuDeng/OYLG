@@ -11,6 +11,9 @@
 typedef void(^popToSuperView)();
 
 @interface DotaSomeOneListTableViewController : UITableViewController
+{
+    UIImageView     *backgroundImgView;
+}
 @property(nonatomic,strong)NSString * aId;
 @property(nonatomic,copy)popToSuperView block;
 @end

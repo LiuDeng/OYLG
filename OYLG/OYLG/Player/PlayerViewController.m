@@ -18,7 +18,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor redColor];
-      
     //播放
     [self.moviePlayer play];
     
@@ -26,14 +25,14 @@
     [self addNotification];
 }
 
--(void)dealloc{
+-(void)dealloc {
     //移除所有通知监控
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
 #pragma mark - 私有方法
--(NSURL *)getFileUrl{
+-(NSURL *)getFileUrl {
     NSString *urlStr=[[NSBundle mainBundle] pathForResource:@"1" ofType:@"MOV"];
     NSURL *url=[NSURL fileURLWithPath:urlStr];
     return url;
@@ -58,10 +57,13 @@
  *
  *  @return 媒体播放控制器
  */
--(MPMoviePlayerController *)moviePlayer{
+-(MPMoviePlayerController *)moviePlayer {
     if (!_moviePlayer) {
         NSURL *url=[self getNetworkUrl];
         _moviePlayer=[[MPMoviePlayerController alloc]initWithContentURL:url];
+//====================10.1
+        // 播放器样式
+        [_moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
         _moviePlayer.view.frame=self.view.bounds;
         _moviePlayer.view.autoresizingMask=UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         [self.view addSubview:_moviePlayer.view];
@@ -72,7 +74,7 @@
 /**
  *  添加通知监控媒体播放控制器状态
  */
--(void)addNotification{
+-(void)addNotification {
     NSNotificationCenter *notificationCenter=[NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector:@selector(mediaPlayerPlaybackStateChange:) name:MPMoviePlayerPlaybackStateDidChangeNotification object:self.moviePlayer];
     [notificationCenter addObserver:self selector:@selector(mediaPlayerPlaybackFinished:) name:MPMoviePlayerPlaybackDidFinishNotification object:self.moviePlayer];
@@ -83,7 +85,7 @@
  *
  *  @param notification 通知对象
  */
--(void)mediaPlayerPlaybackStateChange:(NSNotification *)notification{
+-(void)mediaPlayerPlaybackStateChange:(NSNotification *)notification {
     switch (self.moviePlayer.playbackState) {
         case MPMoviePlaybackStatePlaying:
             NSLog(@"正在播放...");
@@ -107,8 +109,28 @@
  *
  *  @param notification 通知对象
  */
--(void)mediaPlayerPlaybackFinished:(NSNotification *)notification{
+-(void)mediaPlayerPlaybackFinished:(NSNotification *)notification {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+//==================== 10.1
+// 支持设备自动旋转
+- (BOOL)shouldAutorotate
+{
+    return YES;
+}
+// 支持屏幕方向
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscapeRight;
+}
+// 默认屏幕旋转
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationLandscapeRight;
+}
+
+
+
 
 @end

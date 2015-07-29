@@ -10,14 +10,6 @@
 
 @implementation LOLSomeOneProgramListModel
 
--(void)setValue:(id)value forKey:(NSString *)key
-{
-    [super setValue:value forKey:key];
-    if ([key isEqualToString:@"date"]) {
-        self.date1 = value;
-    }
-}
-
 
 +(NSMutableArray *) loadLOLSomeOneProgramList:(NSString *)aId {
     NSMutableArray * LOLSomeOneProgramListArray = [NSMutableArray array];
@@ -53,47 +45,13 @@
     
     return LOLSomeOneProgramListArray;
 }
-
-//下拉请求更多数据
-+(NSMutableArray *) loadLOLSomeOneProgramListMoreData:(NSString *)aId index:(NSInteger) index
-{
-    NSMutableArray * lolSomeOneProgramListArray = [NSMutableArray array];
-    // 请求数据.
-    // 拼接 url 的字符串
-    NSString * urlString = [ NSString stringWithFormat:@"http://api.dotaly.com/lol/api/v1/shipin/latest?author=%@&iap=0&ident=AA6B8F86-AAAB-44DE-B8F7-69C16725AA77&jb=0&limit=50&offset=%ld",aId,index];
-    // 获取 URL
-    NSString * newString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    // 2.转成 URL
-    NSURL * url = [[NSURL alloc]initWithString:newString];
-    
-    // 3.创建请求对象
-    NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:url];
-    
-    // 4.创建 响应 和 错误
-    NSURLResponse * response = nil;
-    NSError * error = nil;
-    
-    // 5.开始请求获取响应,建立连接.同步请求.
-    NSData * data =
-    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    
-    // 解析字典 json
-    NSDictionary * dataDict = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingAllowFragments) error:nil];
-    
-    // 创建 model 模型.
-    for (NSDictionary * d in dataDict[@"videos"]) {
-        LOLSomeOneProgramListModel * lolSomeOneProgramListInfo = [[LOLSomeOneProgramListModel alloc] init];
-        [lolSomeOneProgramListInfo setValuesForKeysWithDictionary:d];
-        [lolSomeOneProgramListArray addObject:lolSomeOneProgramListInfo];
+//==========10.1
+- (void)setValue:(id)value forKey:(NSString *)key {
+    [super setValue:value forKey:key];
+    if ([key isEqualToString:@"date"]) {
+        _date1 = value;
     }
-    
-    return lolSomeOneProgramListArray;
 }
-
-
-
-
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key {
     
 }

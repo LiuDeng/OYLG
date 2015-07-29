@@ -23,7 +23,6 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OkZ-0N-hUz">
                     <rect key="frame" x="210" y="94" width="100" height="70"/>
-                    <color key="backgroundColor" red="0.2511994119" green="0.84783561299999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="6Lj-cc-ZBT"/>
                         <constraint firstAttribute="width" constant="100" id="dY3-yd-yPU"/>
@@ -35,31 +34,37 @@
                         </mask>
                     </variation>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXb-4h-rm1">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXb-4h-rm1">
                     <rect key="frame" x="10" y="94" width="190" height="70"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <color key="tintColor" red="0.2511994119" green="0.84783561299999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="70" id="C2H-K0-42W"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                    <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                    <color key="highlightedColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="C2H-K0-42W"/>
                         </mask>
                     </variation>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="视频时间" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Kg-Hp-MP0" userLabel="视频时间">
-                    <rect key="frame" x="210" y="174" width="100" height="18"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Kg-Hp-MP0">
+                    <rect key="frame" x="210" y="174" width="100" height="21"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
+                    <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ltb-na-Cf7">
-                    <rect key="frame" x="133" y="273" width="54" height="30"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="在线播放" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UPV-RO-V4c">
+                    <rect key="frame" x="10" y="229" width="190" height="21"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ltb-na-Cf7">
+                    <rect key="frame" x="133" y="285" width="53" height="30"/>
                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="高清">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -69,8 +74,8 @@
                         <action selector="mp4Action:" destination="-1" eventType="touchUpInside" id="HzR-4u-5YJ"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Li-Nd-mlk">
-                    <rect key="frame" x="10" y="273" width="53" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Li-Nd-mlk">
+                    <rect key="frame" x="10" y="285" width="54" height="30"/>
                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="标清">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -80,8 +85,8 @@
                         <action selector="flvAction:" destination="-1" eventType="touchUpInside" id="5rs-yu-9PK"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wLx-Gk-TKo">
-                    <rect key="frame" x="257" y="273" width="53" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wLx-Gk-TKo">
+                    <rect key="frame" x="256" y="285" width="54" height="30"/>
                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="超清">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -91,27 +96,12 @@
                         <action selector="HDAction:" destination="-1" eventType="touchUpInside" id="fzG-R1-IcT"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="更新时间" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bRu-bg-RsV">
-                    <rect key="frame" x="10" y="174" width="190" height="18"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <color key="tintColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <view alpha="0.49999999999999961" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DXw-PG-CeC">
-                    <rect key="frame" x="10" y="221" width="302" height="1"/>
-                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="1" id="oDT-xE-Lcb"/>
-                    </constraints>
-                </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在线播放" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UPV-RO-V4c">
-                    <rect key="frame" x="10" y="227" width="190" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bRu-bg-RsV">
+                    <rect key="frame" x="10" y="174" width="190" height="21"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
+                    <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </label>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -126,11 +116,8 @@
                 <constraint firstItem="UPV-RO-V4c" firstAttribute="leading" secondItem="bRu-bg-RsV" secondAttribute="leading" id="9Fy-nE-21Q"/>
                 <constraint firstItem="OkZ-0N-hUz" firstAttribute="leading" secondItem="aXb-4h-rm1" secondAttribute="trailing" constant="10" id="Bhf-hH-g2I"/>
                 <constraint firstItem="7Kg-Hp-MP0" firstAttribute="leading" secondItem="bRu-bg-RsV" secondAttribute="trailing" constant="10" id="Dcw-ic-3dE"/>
-                <constraint firstAttribute="trailing" secondItem="DXw-PG-CeC" secondAttribute="trailing" constant="8" id="DpF-30-5bW"/>
-                <constraint firstItem="DXw-PG-CeC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="GNi-Tg-YJr"/>
                 <constraint firstItem="UPV-RO-V4c" firstAttribute="width" secondItem="bRu-bg-RsV" secondAttribute="width" id="KpL-AD-HvU"/>
-                <constraint firstItem="UPV-RO-V4c" firstAttribute="top" secondItem="DXw-PG-CeC" secondAttribute="bottom" constant="5" id="Nsz-6c-E9O"/>
-                <constraint firstItem="2Li-Nd-mlk" firstAttribute="top" secondItem="UPV-RO-V4c" secondAttribute="bottom" constant="25" id="OiL-Pi-642"/>
+                <constraint firstItem="2Li-Nd-mlk" firstAttribute="top" secondItem="UPV-RO-V4c" secondAttribute="bottom" constant="35" id="OiL-Pi-642"/>
                 <constraint firstItem="aXb-4h-rm1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="Pyd-cx-15N"/>
                 <constraint firstItem="7Kg-Hp-MP0" firstAttribute="leading" secondItem="bRu-bg-RsV" secondAttribute="leading" id="UjB-gV-gxu"/>
                 <constraint firstItem="7Kg-Hp-MP0" firstAttribute="leading" secondItem="bRu-bg-RsV" secondAttribute="trailing" constant="10" id="Xcu-rW-xK9"/>
@@ -151,14 +138,12 @@
                 <constraint firstItem="Ltb-na-Cf7" firstAttribute="top" secondItem="2Li-Nd-mlk" secondAttribute="top" id="u9h-FN-g9b"/>
                 <constraint firstItem="OkZ-0N-hUz" firstAttribute="leading" secondItem="aXb-4h-rm1" secondAttribute="trailing" constant="10" id="uUw-6p-oxo"/>
                 <constraint firstItem="wLx-Gk-TKo" firstAttribute="top" secondItem="Ltb-na-Cf7" secondAttribute="top" id="vhZ-8g-PpE"/>
-                <constraint firstItem="DXw-PG-CeC" firstAttribute="top" secondItem="bRu-bg-RsV" secondAttribute="bottom" constant="26" id="wkS-bV-7Gg"/>
                 <constraint firstAttribute="trailing" secondItem="7Kg-Hp-MP0" secondAttribute="trailing" constant="10" id="y3n-ns-sGC"/>
                 <constraint firstAttribute="trailing" secondItem="7Kg-Hp-MP0" secondAttribute="trailing" constant="10" id="zHP-Aa-3Ze"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="wkS-bV-7Gg"/>
                     <exclude reference="Dcw-ic-3dE"/>
                     <exclude reference="UjB-gV-gxu"/>
                     <exclude reference="iBc-EJ-Vor"/>
