@@ -9,6 +9,7 @@
 #import "RootTabBarViewController.h"
 #import "DotaAllListViewController.h"
 #import "LOLAllListViewController.h"
+#import "OYLG-Prefix.pch"
 
 
 @interface RootTabBarViewController ()
@@ -22,7 +23,7 @@
 
     // navigationBar 颜色
     UINavigationBar *bar = [UINavigationBar appearance];
-    [bar setBarTintColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]];
+    [bar setBarTintColor:kBackbroundColorAlpha];
 
     // DOTA界面
     DotaAllListViewController * DotaPlayerListVC = [[DotaAllListViewController alloc] init];

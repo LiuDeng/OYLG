@@ -7,8 +7,16 @@
 //
 
 #import "PlayerViewController.h"
+#import "OYLG-Prefix.pch"
+#import "VolumeView.h"
+#import "BrightnessView.h"
+#import "ProgressView.h"
 
-@interface PlayerViewController ()
+@interface PlayerViewController () <ProgressViewDelegate>
+{
+    ProgressView    *progressView;
+}
+
 
 @end
 
@@ -18,15 +26,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor redColor];
-    //播放
+    
+    // 手势 音量--亮度--进度
+    
+    // 音量
+    VolumeView *vV = [[VolumeView alloc] init];
+    [self.view addSubview:vV];
+    [self.view insertSubview:vV aboveSubview:self.moviePlayer.view];
+    
+    // 亮度
+    BrightnessView *bV = [[BrightnessView alloc] init];
+    [self.view addSubview:bV];
+    [self.view insertSubview:bV aboveSubview:self.moviePlayer.view];
+    
+    // 快退
+    progressView = [[ProgressView alloc] init];
+    [self.view addSubview:progressView];
+    [self.view insertSubview:bV aboveSubview:self.moviePlayer.view];
+    progressView.delegate = self;
+        
+    // 播放
     [self.moviePlayer play];
     
-    //添加通知
+    // 添加通知
     [self addNotification];
 }
 
 -(void)dealloc {
-    //移除所有通知监控
+    // 移除所有通知监控
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -112,7 +139,7 @@
 -(void)mediaPlayerPlaybackFinished:(NSNotification *)notification {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
+#pragma mark - 屏幕旋转
 //==================== 10.1
 // 支持设备自动旋转
 - (BOOL)shouldAutorotate
@@ -130,7 +157,20 @@
     return UIInterfaceOrientationLandscapeRight;
 }
 
+#pragma mark - 手势状态
 
+
+#pragma mark - 手势代理方法
+- (void)adjustProgress:(UISwipeGestureRecognizerDirection)direction {
+    // 调节视频进度
+    if (direction == UISwipeGestureRecognizerDirectionLeft) {
+        DLog(@"调节视频进度快退");
+        
+    } else if (direction == UISwipeGestureRecognizerDirectionRight) {
+        DLog(@"调节视频进度快进");
+        self.moviePlayer.initialPlaybackTime += 30.0f;
+    }
+}
 
 
 @end

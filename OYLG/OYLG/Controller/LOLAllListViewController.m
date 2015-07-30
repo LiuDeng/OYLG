@@ -29,10 +29,20 @@
 
 @implementation LOLAllListViewController
 
--(void)loadView
-{
+-(void)loadView {
+    // 替换根视图
     self.rv = [[PlayerList alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.view = _rv;
+    //=================================
+    // 设置navigation的背景图
+    backgroundImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, kNavigationFrame.size.height)];
+    backgroundImgView.image = [UIImage imageNamed:@"lol2"];
+    UIView *alphView = [[UIView alloc] initWithFrame:kScreenFrame];
+    alphView.backgroundColor = kBackbroundColorAlpha;
+    [backgroundImgView addSubview:alphView];
+    [self.navigationController.view addSubview:backgroundImgView];
+    [self.navigationController.view sendSubviewToBack:backgroundImgView];
+    //=================================
 }
 - (void)viewWillAppear:(BOOL)animated {
     
@@ -52,19 +62,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //lol界面背景图
-    UIImageView *backgroudImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, -64, kScreenWidth, kScreenHeight)];
-    backgroudImg.image = [UIImage imageNamed:@"lol2"];
-    [self.view addSubview:backgroudImg];
-    [self.rv sendSubviewToBack:backgroudImg];
-    
+ 
+    // 在navigationItem加上segementcontrol
     self.navigationItem.titleView = self.rv.seg;
+    [self.rv.seg addTarget:self action:@selector(segAction:) forControlEvents:(UIControlEventValueChanged)];
     
-    // 通过 seg 来判断显示哪个 tabelview.
+    // 设置navigation原点
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
-    [self.rv.seg addTarget:self action:@selector(segAction:) forControlEvents:(UIControlEventValueChanged)];
     
     // 将这两个 tableview 的代理都设置成自己.
     self.rv.playerTableView.dataSource = self;
@@ -72,6 +78,7 @@
     self.rv.eventTableView.dataSource = self;
     self.rv.eventTableView.delegate = self;
     
+    // 注册
     [self.rv.playerTableView registerNib:[UINib nibWithNibName:@"PlayerlListTableViewCell" bundle:nil] forCellReuseIdentifier:@"player"];
     [self.rv.eventTableView registerNib:[UINib nibWithNibName:@"PlayerlListTableViewCell" bundle:nil] forCellReuseIdentifier:@"event"];
     

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "RootTabBarViewController.h"
+#import "OYLG-Prefix.pch"
 
 @interface AppDelegate ()
 
@@ -27,7 +28,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     // tabBar颜色
     UITabBar *tabBar = [UITabBar appearance];
-    [tabBar setBarTintColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
+    [tabBar setBarTintColor:kBackbroundColorAlpha];
     
     RootTabBarViewController * rootVC = [[RootTabBarViewController alloc] init];
     

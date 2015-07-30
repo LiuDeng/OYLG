@@ -40,9 +40,9 @@
     
     //=================================
     // 设置tableView出现时的背景图 (为了解决页面跳转是出现卡顿现象)
-    backgroundImgView = [[UIImageView alloc] initWithFrame:kScreenFrame];
+    backgroundImgView = [[UIImageView alloc] initWithFrame:self.pullTableView.frame];
     backgroundImgView.image = [UIImage imageNamed:@"background"];
-    UIView *alphView = [[UIView alloc] initWithFrame:kScreenFrame];
+    UIView *alphView = [[UIView alloc] initWithFrame:self.pullTableView.frame];
     alphView.backgroundColor = kBackbroundColorAlpha;
     [backgroundImgView addSubview:alphView];
     self.pullTableView.backgroundColor = [UIColor clearColor];
@@ -53,7 +53,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     
-   
     // 移除tableView.bacbroundView图显示navigation.View.backgroundView
     self.pullTableView.backgroundView = nil;
     

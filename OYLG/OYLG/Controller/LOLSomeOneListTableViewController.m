@@ -31,13 +31,18 @@
 
 -(void)loadView
 {
+    // navigation View 原点
+    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    // 替换tableView
     self.pullTableView = [[PullTableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 20 - 44 - 49)];
     self.tableView = _pullTableView;
     
     //=================================
-    // 设置tableView的背景图
+    // 设置tableView出现时的背景图 (为了解决页面跳转是出现卡顿现象)
     backgroundImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, - 64, kScreenWidth, kScreenHeight)];
-    backgroundImgView.image = [UIImage imageNamed:@"background"];
+    backgroundImgView.image = [UIImage imageNamed:@"lol2"];
     UIView *alphView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     alphView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
     [backgroundImgView addSubview:alphView];
@@ -48,13 +53,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     
-    //=================================
-    // 添加navigation的背景
-    [self.navigationController.view addSubview:backgroundImgView];
-    [self.navigationController.view sendSubviewToBack:backgroundImgView];
-    
-    // 移除tableView的背景图
-    [self.view willRemoveSubview:backgroundImgView];
+    // 移除tableView.bacbroundView图显示navigation.View.backgroundView
+    self.pullTableView.backgroundView = nil;
     
     // 设置
     self.tableView.backgroundColor = [UIColor colorWithWhite:0 alpha:0];

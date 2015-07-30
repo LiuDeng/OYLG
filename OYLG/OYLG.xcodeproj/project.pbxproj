@@ -60,6 +60,12 @@
 		82B4FA301B667454009E2F00 /* LOLAllListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B4FA2F1B667454009E2F00 /* LOLAllListViewController.m */; };
 		82B4FA331B667566009E2F00 /* LOLSomeOneListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B4FA321B667566009E2F00 /* LOLSomeOneListTableViewController.m */; };
 		82EB19F91B67728400949622 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EB19F81B67728400949622 /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A0A57B0A1B69D3E600DFA335 /* VolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A57B091B69D3E600DFA335 /* VolumeView.m */; };
+		A0A57B0B1B69D3E600DFA335 /* VolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A57B091B69D3E600DFA335 /* VolumeView.m */; };
+		A0A57B0E1B69DAA900DFA335 /* BrightnessView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A57B0D1B69DAA900DFA335 /* BrightnessView.m */; };
+		A0A57B0F1B69DAA900DFA335 /* BrightnessView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A57B0D1B69DAA900DFA335 /* BrightnessView.m */; };
+		A0A57B121B69DDE100DFA335 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A57B111B69DDE100DFA335 /* ProgressView.m */; };
+		A0A57B131B69DDE100DFA335 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A57B111B69DDE100DFA335 /* ProgressView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +176,12 @@
 		82B4FA321B667566009E2F00 /* LOLSomeOneListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOLSomeOneListTableViewController.m; sourceTree = "<group>"; };
 		82EB19F71B67728400949622 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		82EB19F81B67728400949622 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		A0A57B081B69D3E600DFA335 /* VolumeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeView.h; sourceTree = "<group>"; };
+		A0A57B091B69D3E600DFA335 /* VolumeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeView.m; sourceTree = "<group>"; };
+		A0A57B0C1B69DAA900DFA335 /* BrightnessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrightnessView.h; sourceTree = "<group>"; };
+		A0A57B0D1B69DAA900DFA335 /* BrightnessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrightnessView.m; sourceTree = "<group>"; };
+		A0A57B101B69DDE100DFA335 /* ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressView.h; sourceTree = "<group>"; };
+		A0A57B111B69DDE100DFA335 /* ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -357,6 +369,12 @@
 			children = (
 				82B4F9D41B661AFB009E2F00 /* PlayerViewController.h */,
 				82B4F9D51B661AFB009E2F00 /* PlayerViewController.m */,
+				A0A57B0C1B69DAA900DFA335 /* BrightnessView.h */,
+				A0A57B0D1B69DAA900DFA335 /* BrightnessView.m */,
+				A0A57B081B69D3E600DFA335 /* VolumeView.h */,
+				A0A57B091B69D3E600DFA335 /* VolumeView.m */,
+				A0A57B101B69DDE100DFA335 /* ProgressView.h */,
+				A0A57B111B69DDE100DFA335 /* ProgressView.m */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -536,6 +554,7 @@
 				82B4FA0D1B6622F8009E2F00 /* UIImage+GIF.m in Sources */,
 				82B4FA151B662904009E2F00 /* DotaVideoURLModel.m in Sources */,
 				82B4FA301B667454009E2F00 /* LOLAllListViewController.m in Sources */,
+				A0A57B121B69DDE100DFA335 /* ProgressView.m in Sources */,
 				82B4FA2A1B6672CD009E2F00 /* LOLSomeOneProgramListModel.m in Sources */,
 				82B4FA221B663257009E2F00 /* PlayerlListTableViewCell.m in Sources */,
 				82B4F9B01B65E798009E2F00 /* PlayerList.m in Sources */,
@@ -553,10 +572,12 @@
 				82B4F98B1B65E6D6009E2F00 /* AppDelegate.m in Sources */,
 				82B4FA0E1B6622F8009E2F00 /* UIImage+MultiFormat.m in Sources */,
 				82B4FA111B6622F8009E2F00 /* UIImageView+WebCache.m in Sources */,
+				A0A57B0E1B69DAA900DFA335 /* BrightnessView.m in Sources */,
 				821999271B6788170083418A /* LoadMoreTableFooterView.m in Sources */,
 				82B4F9881B65E6D6009E2F00 /* main.m in Sources */,
 				82B4FA121B6622F8009E2F00 /* UIView+WebCacheOperation.m in Sources */,
 				82B4FA331B667566009E2F00 /* LOLSomeOneListTableViewController.m in Sources */,
+				A0A57B0A1B69D3E600DFA335 /* VolumeView.m in Sources */,
 				82B4F9DA1B661C67009E2F00 /* PlayerProgramDetailViewController.m in Sources */,
 				82B4F9C81B65F7DF009E2F00 /* DotaAllListModel.m in Sources */,
 				82B4FA081B6622F8009E2F00 /* SDWebImageDownloader.m in Sources */,
@@ -577,6 +598,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0A57B0B1B69D3E600DFA335 /* VolumeView.m in Sources */,
+				A0A57B131B69DDE100DFA335 /* ProgressView.m in Sources */,
+				A0A57B0F1B69DAA900DFA335 /* BrightnessView.m in Sources */,
 				82B4F9A21B65E6D6009E2F00 /* OYLGTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

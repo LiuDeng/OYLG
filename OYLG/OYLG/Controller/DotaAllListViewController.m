@@ -34,7 +34,7 @@
     self.rv = [[PlayerList alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.view = _rv;
     //=================================
-    // 设置tableView的背景图
+    // 设置navigation的背景图
     backgroundImgView = [[UIImageView alloc] initWithFrame:kScreenFrame];
     backgroundImgView.image = [UIImage imageNamed:@"background"];
     UIView *alphView = [[UIView alloc] initWithFrame:kScreenFrame];
