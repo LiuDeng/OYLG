@@ -60,8 +60,26 @@
 		82B4FA301B667454009E2F00 /* LOLAllListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B4FA2F1B667454009E2F00 /* LOLAllListViewController.m */; };
 		82B4FA331B667566009E2F00 /* LOLSomeOneListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B4FA321B667566009E2F00 /* LOLSomeOneListTableViewController.m */; };
 		82EB19F91B67728400949622 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EB19F81B67728400949622 /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		A0A57B0A1B69D3E600DFA335 /* VolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A57B091B69D3E600DFA335 /* VolumeView.m */; };
-		A0A57B0B1B69D3E600DFA335 /* VolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A57B091B69D3E600DFA335 /* VolumeView.m */; };
+		A0494B261B6A1F0900DA2FC4 /* ALAirplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0494B0E1B6A1F0900DA2FC4 /* ALAirplayView.m */; };
+		A0494B271B6A1F0900DA2FC4 /* ALButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A0494B101B6A1F0900DA2FC4 /* ALButton.m */; };
+		A0494B281B6A1F0900DA2FC4 /* ALMoviePlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0494B121B6A1F0900DA2FC4 /* ALMoviePlayerController.m */; };
+		A0494B291B6A1F0900DA2FC4 /* ALMoviePlayerControls.m in Sources */ = {isa = PBXBuildFile; fileRef = A0494B141B6A1F0900DA2FC4 /* ALMoviePlayerControls.m */; };
+		A0494B2A1B6A1F0900DA2FC4 /* movieBackward.png in Resources */ = {isa = PBXBuildFile; fileRef = A0494B161B6A1F0900DA2FC4 /* movieBackward.png */; };
+		A0494B2B1B6A1F0900DA2FC4 /* movieBackward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0494B171B6A1F0900DA2FC4 /* movieBackward@2x.png */; };
+		A0494B2C1B6A1F0900DA2FC4 /* movieBackwardSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = A0494B181B6A1F0900DA2FC4 /* movieBackwardSelected.png */; };
+		A0494B2D1B6A1F0900DA2FC4 /* movieBackwardSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0494B191B6A1F0900DA2FC4 /* movieBackwardSelected@2x.png */; };
+		A0494B2E1B6A1F0900DA2FC4 /* movieEndFullscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = A0494B1A1B6A1F0900DA2FC4 /* movieEndFullscreen.png */; };
+		A0494B2F1B6A1F0900DA2FC4 /* movieEndFullscreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0494B1B1B6A1F0900DA2FC4 /* movieEndFullscreen@2x.png */; };
+		A0494B301B6A1F0900DA2FC4 /* movieForward.png in Resources */ = {isa = PBXBuildFile; fileRef = A0494B1C1B6A1F0900DA2FC4 /* movieForward.png */; };
+		A0494B311B6A1F0900DA2FC4 /* movieForward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0494B1D1B6A1F0900DA2FC4 /* movieForward@2x.png */; };
+		A0494B321B6A1F0900DA2FC4 /* movieForwardSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = A0494B1E1B6A1F0900DA2FC4 /* movieForwardSelected.png */; };
+		A0494B331B6A1F0900DA2FC4 /* movieForwardSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0494B1F1B6A1F0900DA2FC4 /* movieForwardSelected@2x.png */; };
+		A0494B341B6A1F0900DA2FC4 /* movieFullscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = A0494B201B6A1F0900DA2FC4 /* movieFullscreen.png */; };
+		A0494B351B6A1F0900DA2FC4 /* movieFullscreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0494B211B6A1F0900DA2FC4 /* movieFullscreen@2x.png */; };
+		A0494B361B6A1F0900DA2FC4 /* moviePause.png in Resources */ = {isa = PBXBuildFile; fileRef = A0494B221B6A1F0900DA2FC4 /* moviePause.png */; };
+		A0494B371B6A1F0900DA2FC4 /* moviePause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0494B231B6A1F0900DA2FC4 /* moviePause@2x.png */; };
+		A0494B381B6A1F0900DA2FC4 /* moviePlay.png in Resources */ = {isa = PBXBuildFile; fileRef = A0494B241B6A1F0900DA2FC4 /* moviePlay.png */; };
+		A0494B391B6A1F0900DA2FC4 /* moviePlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0494B251B6A1F0900DA2FC4 /* moviePlay@2x.png */; };
 		A0A57B0E1B69DAA900DFA335 /* BrightnessView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A57B0D1B69DAA900DFA335 /* BrightnessView.m */; };
 		A0A57B0F1B69DAA900DFA335 /* BrightnessView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A57B0D1B69DAA900DFA335 /* BrightnessView.m */; };
 		A0A57B121B69DDE100DFA335 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A57B111B69DDE100DFA335 /* ProgressView.m */; };
@@ -176,8 +194,30 @@
 		82B4FA321B667566009E2F00 /* LOLSomeOneListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOLSomeOneListTableViewController.m; sourceTree = "<group>"; };
 		82EB19F71B67728400949622 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		82EB19F81B67728400949622 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		A0A57B081B69D3E600DFA335 /* VolumeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeView.h; sourceTree = "<group>"; };
-		A0A57B091B69D3E600DFA335 /* VolumeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeView.m; sourceTree = "<group>"; };
+		A0494B0D1B6A1F0900DA2FC4 /* ALAirplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAirplayView.h; sourceTree = "<group>"; };
+		A0494B0E1B6A1F0900DA2FC4 /* ALAirplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALAirplayView.m; sourceTree = "<group>"; };
+		A0494B0F1B6A1F0900DA2FC4 /* ALButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALButton.h; sourceTree = "<group>"; };
+		A0494B101B6A1F0900DA2FC4 /* ALButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALButton.m; sourceTree = "<group>"; };
+		A0494B111B6A1F0900DA2FC4 /* ALMoviePlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALMoviePlayerController.h; sourceTree = "<group>"; };
+		A0494B121B6A1F0900DA2FC4 /* ALMoviePlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALMoviePlayerController.m; sourceTree = "<group>"; };
+		A0494B131B6A1F0900DA2FC4 /* ALMoviePlayerControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALMoviePlayerControls.h; sourceTree = "<group>"; };
+		A0494B141B6A1F0900DA2FC4 /* ALMoviePlayerControls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALMoviePlayerControls.m; sourceTree = "<group>"; };
+		A0494B161B6A1F0900DA2FC4 /* movieBackward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movieBackward.png; sourceTree = "<group>"; };
+		A0494B171B6A1F0900DA2FC4 /* movieBackward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "movieBackward@2x.png"; sourceTree = "<group>"; };
+		A0494B181B6A1F0900DA2FC4 /* movieBackwardSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movieBackwardSelected.png; sourceTree = "<group>"; };
+		A0494B191B6A1F0900DA2FC4 /* movieBackwardSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "movieBackwardSelected@2x.png"; sourceTree = "<group>"; };
+		A0494B1A1B6A1F0900DA2FC4 /* movieEndFullscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movieEndFullscreen.png; sourceTree = "<group>"; };
+		A0494B1B1B6A1F0900DA2FC4 /* movieEndFullscreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "movieEndFullscreen@2x.png"; sourceTree = "<group>"; };
+		A0494B1C1B6A1F0900DA2FC4 /* movieForward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movieForward.png; sourceTree = "<group>"; };
+		A0494B1D1B6A1F0900DA2FC4 /* movieForward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "movieForward@2x.png"; sourceTree = "<group>"; };
+		A0494B1E1B6A1F0900DA2FC4 /* movieForwardSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movieForwardSelected.png; sourceTree = "<group>"; };
+		A0494B1F1B6A1F0900DA2FC4 /* movieForwardSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "movieForwardSelected@2x.png"; sourceTree = "<group>"; };
+		A0494B201B6A1F0900DA2FC4 /* movieFullscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movieFullscreen.png; sourceTree = "<group>"; };
+		A0494B211B6A1F0900DA2FC4 /* movieFullscreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "movieFullscreen@2x.png"; sourceTree = "<group>"; };
+		A0494B221B6A1F0900DA2FC4 /* moviePause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moviePause.png; sourceTree = "<group>"; };
+		A0494B231B6A1F0900DA2FC4 /* moviePause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "moviePause@2x.png"; sourceTree = "<group>"; };
+		A0494B241B6A1F0900DA2FC4 /* moviePlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moviePlay.png; sourceTree = "<group>"; };
+		A0494B251B6A1F0900DA2FC4 /* moviePlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "moviePlay@2x.png"; sourceTree = "<group>"; };
 		A0A57B0C1B69DAA900DFA335 /* BrightnessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrightnessView.h; sourceTree = "<group>"; };
 		A0A57B0D1B69DAA900DFA335 /* BrightnessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrightnessView.m; sourceTree = "<group>"; };
 		A0A57B101B69DDE100DFA335 /* ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressView.h; sourceTree = "<group>"; };
@@ -371,8 +411,6 @@
 				82B4F9D51B661AFB009E2F00 /* PlayerViewController.m */,
 				A0A57B0C1B69DAA900DFA335 /* BrightnessView.h */,
 				A0A57B0D1B69DAA900DFA335 /* BrightnessView.m */,
-				A0A57B081B69D3E600DFA335 /* VolumeView.h */,
-				A0A57B091B69D3E600DFA335 /* VolumeView.m */,
 				A0A57B101B69DDE100DFA335 /* ProgressView.h */,
 				A0A57B111B69DDE100DFA335 /* ProgressView.m */,
 			);
@@ -422,6 +460,7 @@
 		82B4FA241B665046009E2F00 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				A0494B0C1B6A1F0900DA2FC4 /* ALMoviePlayerController */,
 				82B4F9D31B661AEC009E2F00 /* Player */,
 				821999131B6788170083418A /* EGOTableViewPullRefresh */,
 				82EB19F61B67728400949622 /* MBProgressHUD */,
@@ -437,6 +476,45 @@
 				82EB19F81B67728400949622 /* MBProgressHUD.m */,
 			);
 			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		A0494B0C1B6A1F0900DA2FC4 /* ALMoviePlayerController */ = {
+			isa = PBXGroup;
+			children = (
+				A0494B0D1B6A1F0900DA2FC4 /* ALAirplayView.h */,
+				A0494B0E1B6A1F0900DA2FC4 /* ALAirplayView.m */,
+				A0494B0F1B6A1F0900DA2FC4 /* ALButton.h */,
+				A0494B101B6A1F0900DA2FC4 /* ALButton.m */,
+				A0494B111B6A1F0900DA2FC4 /* ALMoviePlayerController.h */,
+				A0494B121B6A1F0900DA2FC4 /* ALMoviePlayerController.m */,
+				A0494B131B6A1F0900DA2FC4 /* ALMoviePlayerControls.h */,
+				A0494B141B6A1F0900DA2FC4 /* ALMoviePlayerControls.m */,
+				A0494B151B6A1F0900DA2FC4 /* Images */,
+			);
+			path = ALMoviePlayerController;
+			sourceTree = "<group>";
+		};
+		A0494B151B6A1F0900DA2FC4 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				A0494B161B6A1F0900DA2FC4 /* movieBackward.png */,
+				A0494B171B6A1F0900DA2FC4 /* movieBackward@2x.png */,
+				A0494B181B6A1F0900DA2FC4 /* movieBackwardSelected.png */,
+				A0494B191B6A1F0900DA2FC4 /* movieBackwardSelected@2x.png */,
+				A0494B1A1B6A1F0900DA2FC4 /* movieEndFullscreen.png */,
+				A0494B1B1B6A1F0900DA2FC4 /* movieEndFullscreen@2x.png */,
+				A0494B1C1B6A1F0900DA2FC4 /* movieForward.png */,
+				A0494B1D1B6A1F0900DA2FC4 /* movieForward@2x.png */,
+				A0494B1E1B6A1F0900DA2FC4 /* movieForwardSelected.png */,
+				A0494B1F1B6A1F0900DA2FC4 /* movieForwardSelected@2x.png */,
+				A0494B201B6A1F0900DA2FC4 /* movieFullscreen.png */,
+				A0494B211B6A1F0900DA2FC4 /* movieFullscreen@2x.png */,
+				A0494B221B6A1F0900DA2FC4 /* moviePause.png */,
+				A0494B231B6A1F0900DA2FC4 /* moviePause@2x.png */,
+				A0494B241B6A1F0900DA2FC4 /* moviePlay.png */,
+				A0494B251B6A1F0900DA2FC4 /* moviePlay@2x.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -519,17 +597,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0494B2B1B6A1F0900DA2FC4 /* movieBackward@2x.png in Resources */,
 				82B4F9DB1B661C67009E2F00 /* PlayerProgramDetailViewController.xib in Resources */,
 				821999301B6788170083418A /* whiteArrow.png in Resources */,
+				A0494B361B6A1F0900DA2FC4 /* moviePause.png in Resources */,
 				8219992B1B6788170083418A /* blackArrow@2x.png in Resources */,
+				A0494B301B6A1F0900DA2FC4 /* movieForward.png in Resources */,
+				A0494B381B6A1F0900DA2FC4 /* moviePlay.png in Resources */,
+				A0494B321B6A1F0900DA2FC4 /* movieForwardSelected.png in Resources */,
+				A0494B2C1B6A1F0900DA2FC4 /* movieBackwardSelected.png in Resources */,
+				A0494B2F1B6A1F0900DA2FC4 /* movieEndFullscreen@2x.png in Resources */,
 				821999311B6788170083418A /* whiteArrow@2x.png in Resources */,
+				A0494B341B6A1F0900DA2FC4 /* movieFullscreen.png in Resources */,
 				8219992E1B6788170083418A /* grayArrow.png in Resources */,
+				A0494B351B6A1F0900DA2FC4 /* movieFullscreen@2x.png in Resources */,
+				A0494B2A1B6A1F0900DA2FC4 /* movieBackward.png in Resources */,
 				8219992A1B6788170083418A /* blackArrow.png in Resources */,
 				8219992F1B6788170083418A /* grayArrow@2x.png in Resources */,
 				8219992C1B6788170083418A /* blueArrow.png in Resources */,
 				82B4F9911B65E6D6009E2F00 /* Main.storyboard in Resources */,
 				82B4F9961B65E6D6009E2F00 /* LaunchScreen.xib in Resources */,
+				A0494B391B6A1F0900DA2FC4 /* moviePlay@2x.png in Resources */,
 				8219992D1B6788170083418A /* blueArrow@2x.png in Resources */,
+				A0494B311B6A1F0900DA2FC4 /* movieForward@2x.png in Resources */,
+				A0494B2D1B6A1F0900DA2FC4 /* movieBackwardSelected@2x.png in Resources */,
+				A0494B331B6A1F0900DA2FC4 /* movieForwardSelected@2x.png in Resources */,
+				A0494B371B6A1F0900DA2FC4 /* moviePause@2x.png in Resources */,
+				A0494B2E1B6A1F0900DA2FC4 /* movieEndFullscreen.png in Resources */,
 				82B4F9931B65E6D6009E2F00 /* Images.xcassets in Resources */,
 				82B4FA231B663257009E2F00 /* PlayerlListTableViewCell.xib in Resources */,
 			);
@@ -551,7 +645,9 @@
 			files = (
 				821999261B6788170083418A /* EGORefreshTableHeaderView.m in Sources */,
 				821999281B6788170083418A /* MessageInterceptor.m in Sources */,
+				A0494B261B6A1F0900DA2FC4 /* ALAirplayView.m in Sources */,
 				82B4FA0D1B6622F8009E2F00 /* UIImage+GIF.m in Sources */,
+				A0494B281B6A1F0900DA2FC4 /* ALMoviePlayerController.m in Sources */,
 				82B4FA151B662904009E2F00 /* DotaVideoURLModel.m in Sources */,
 				82B4FA301B667454009E2F00 /* LOLAllListViewController.m in Sources */,
 				A0A57B121B69DDE100DFA335 /* ProgressView.m in Sources */,
@@ -570,14 +666,15 @@
 				82B4FA061B6622F8009E2F00 /* SDWebImageCompat.m in Sources */,
 				82B4FA2D1B66737F009E2F00 /* LOLVideoURLModel.m in Sources */,
 				82B4F98B1B65E6D6009E2F00 /* AppDelegate.m in Sources */,
+				A0494B271B6A1F0900DA2FC4 /* ALButton.m in Sources */,
 				82B4FA0E1B6622F8009E2F00 /* UIImage+MultiFormat.m in Sources */,
 				82B4FA111B6622F8009E2F00 /* UIImageView+WebCache.m in Sources */,
 				A0A57B0E1B69DAA900DFA335 /* BrightnessView.m in Sources */,
 				821999271B6788170083418A /* LoadMoreTableFooterView.m in Sources */,
+				A0494B291B6A1F0900DA2FC4 /* ALMoviePlayerControls.m in Sources */,
 				82B4F9881B65E6D6009E2F00 /* main.m in Sources */,
 				82B4FA121B6622F8009E2F00 /* UIView+WebCacheOperation.m in Sources */,
 				82B4FA331B667566009E2F00 /* LOLSomeOneListTableViewController.m in Sources */,
-				A0A57B0A1B69D3E600DFA335 /* VolumeView.m in Sources */,
 				82B4F9DA1B661C67009E2F00 /* PlayerProgramDetailViewController.m in Sources */,
 				82B4F9C81B65F7DF009E2F00 /* DotaAllListModel.m in Sources */,
 				82B4FA081B6622F8009E2F00 /* SDWebImageDownloader.m in Sources */,
@@ -598,7 +695,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0A57B0B1B69D3E600DFA335 /* VolumeView.m in Sources */,
 				A0A57B131B69DDE100DFA335 /* ProgressView.m in Sources */,
 				A0A57B0F1B69DAA900DFA335 /* BrightnessView.m in Sources */,
 				82B4F9A21B65E6D6009E2F00 /* OYLGTests.m in Sources */,

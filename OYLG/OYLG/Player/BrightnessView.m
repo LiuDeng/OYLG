@@ -8,13 +8,8 @@
 
 #import "BrightnessView.h"
 #import "OYLG-Prefix.pch"
-
+//float value = [UIScreen mainScreen].brightness;
 @interface BrightnessView ()
-{
-    float       systemVolume;   // 系统音量值
-    CGPoint     startPoint;     // 开始位置
-    CGPoint     movePoint;      // 移动位置
-}
 @end
 
 @implementation BrightnessView
@@ -31,8 +26,11 @@
 - (void)p_setupView {
     
     self.tag = kBrightViewTag;
-    self.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = [UIColor whiteColor];
     self.frame = CGRectMake(0, 50, 150, kScreenWidth - 100);
+    
+    // 添加手势
+    [self p_addGestureRecognizer];
     
 }
 
@@ -40,26 +38,30 @@
     
     // 手指第一次接触到的位置
     UITouch *touch = [touches anyObject];
-    startPoint = [touch locationInView:self.superview];
-    DLog(@"Brightness%@", NSStringFromCGPoint(startPoint));
+    _startPoint = [touch locationInView:self.superview];
+    DLog(@"Brightness%@", NSStringFromCGPoint(_startPoint));
     
 }
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     // 手指每次接触到的位置
     UITouch *touch = [touches anyObject];
-    movePoint = [touch locationInView:self.superview];
-    DLog(@"Brightness%@", NSStringFromCGPoint(movePoint));
-    CGFloat D_value = startPoint.y - movePoint.y;
+    _movePoint = [touch locationInView:self.superview];
+    DLog(@"Brightness%@", NSStringFromCGPoint(_movePoint));
+    CGFloat D_value = _startPoint.y - _movePoint.y;
     DLog(@"Brightness%.2f", D_value);
+    // 滑动事件
+    [self.delegate changeBrightness:D_value];
     
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)p_addGestureRecognizer {
+    
+    // 开始滑动
+    UITapGestureRecognizer *progressRecognizerTap = [[UITapGestureRecognizer alloc] init];
+    [self addGestureRecognizer:progressRecognizerTap];
+    
 }
-*/
+
+
 
 @end

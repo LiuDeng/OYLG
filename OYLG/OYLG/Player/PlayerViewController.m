@@ -8,13 +8,14 @@
 
 #import "PlayerViewController.h"
 #import "OYLG-Prefix.pch"
-#import "VolumeView.h"
 #import "BrightnessView.h"
 #import "ProgressView.h"
 
-@interface PlayerViewController () <ProgressViewDelegate>
+
+@interface PlayerViewController () <ProgressViewDelegate, BrightnessViewDelegate>
 {
     ProgressView    *progressView;
+    BrightnessView  *brightnessView;
 }
 
 
@@ -27,22 +28,17 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor redColor];
     
-    // 手势 音量--亮度--进度
-    
-    // 音量
-    VolumeView *vV = [[VolumeView alloc] init];
-    [self.view addSubview:vV];
-    [self.view insertSubview:vV aboveSubview:self.moviePlayer.view];
-    
+    // 手势 亮度--进度--音量
     // 亮度
-    BrightnessView *bV = [[BrightnessView alloc] init];
-    [self.view addSubview:bV];
-    [self.view insertSubview:bV aboveSubview:self.moviePlayer.view];
+    brightnessView = [[BrightnessView alloc] init];
+    [self.view addSubview:brightnessView];
+    [self.view insertSubview:brightnessView aboveSubview:self.moviePlayer.view];
+    brightnessView.delegate = self;
     
-    // 快退
+    // 快退--音量
     progressView = [[ProgressView alloc] init];
     [self.view addSubview:progressView];
-    [self.view insertSubview:bV aboveSubview:self.moviePlayer.view];
+    [self.view insertSubview:progressView aboveSubview:self.moviePlayer.view];
     progressView.delegate = self;
         
     // 播放
@@ -157,19 +153,100 @@
     return UIInterfaceOrientationLandscapeRight;
 }
 
-#pragma mark - 手势状态
-
-
 #pragma mark - 手势代理方法
+// 进度 -- 音量
+- (void)adjustProgress:(ProgressView *)view direction:(UISwipeGestureRecognizerDirection)direction {
+    
+    if (direction == UISwipeGestureRecognizerDirectionLeft) {
+        [_moviePlayer beginSeekingBackward];
+        DLog(@"调节视频进度快退");
+    } else if (direction == UISwipeGestureRecognizerDirectionRight) {
+        [_moviePlayer beginSeekingForward];
+        DLog(@"调节视频进度快进");
+    } else if (direction == UISwipeGestureRecognizerDirectionUp || direction ==UISwipeGestureRecognizerDirectionDown) {
+        float volume = [[MPMusicPlayerController applicationMusicPlayer] volume];
+        float newVolume = volume;
+        if (view.startPoint.y == view.movePoint.y) {
+            
+        } else if (view.startPoint.y > view.movePoint.y) {
+            newVolume += 0.1;
+            DLog(@"调节音量+");
+            
+        } else if (view.startPoint.y < view.movePoint.y) {
+            newVolume -= 0.1;
+            DLog(@"调节音量-");
+        }
+        if (newVolume < 0) {
+            newVolume = 0;
+        } else if (newVolume > 1.0) {
+            newVolume = 1.0;
+        }
+        [[MPMusicPlayerController applicationMusicPlayer] setVolume:newVolume];
+    }
+
+
+
+}
+/**
 - (void)adjustProgress:(UISwipeGestureRecognizerDirection)direction {
     // 调节视频进度
     if (direction == UISwipeGestureRecognizerDirectionLeft) {
+        [_moviePlayer beginSeekingBackward];
         DLog(@"调节视频进度快退");
-        
     } else if (direction == UISwipeGestureRecognizerDirectionRight) {
+        [_moviePlayer beginSeekingForward];
         DLog(@"调节视频进度快进");
-        self.moviePlayer.initialPlaybackTime += 30.0f;
+    } else if (direction == UISwipeGestureRecognizerDirectionUp) {
+        
+        float volume = [[MPMusicPlayerController applicationMusicPlayer] volume];
+        float newVolume = volume;
+        if (nowPoint.x == _lastPoint.x) {
+            
+        } else {
+            if (nowPoint.x < _lastPoint.x) {
+                newVolume += 0.01;
+            } else {
+                newVolume -= 0.01;
+            }
+        }
+        if (newVolume < 0) {
+            newVolume = 0;
+        } else if (newVolume > 1.0) {
+            newVolume = 1.0;
+        }
+        
+        [[MPMusicPlayerController applicationMusicPlayer] setVolume:newVolume];
+        DLog(@"调节音量+");
+    } else if (direction == UISwipeGestureRecognizerDirectionDown) {
+        DLog(@"调节音量-");
     }
+}
+ */
+// 亮度
+- (void)changeBrightness:(CGFloat)value {
+    DLog(@"========%.2f", value);
+    // 增加值
+    CGFloat addValue = (int)value / 200.0;
+    DLog(@"addValue%.2f", addValue);
+    if (addValue > 0) {
+        // 当前屏幕亮度
+        float value = [UIScreen mainScreen].brightness + addValue;
+        DLog(@"亮度:%.2f", [UIScreen mainScreen].brightness);
+        // 设置系统屏幕的亮度值
+        [[UIScreen mainScreen] setBrightness:value];
+        float value1 = [UIScreen mainScreen].brightness;
+        DLog(@"亮度++:%.2f", value1);
+    } else {
+        // 当前屏幕亮度
+        float value = [UIScreen mainScreen].brightness + addValue;
+        DLog(@"亮度:%.2f", [UIScreen mainScreen].brightness);
+        // 设置系统屏幕的亮度值
+        [[UIScreen mainScreen] setBrightness:value];
+        float value1 = [UIScreen mainScreen].brightness;
+        DLog(@"亮度--:%.2f", value1);
+    }
+    
+    
 }
 
 

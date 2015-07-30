@@ -8,15 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class ProgressView;
 @protocol ProgressViewDelegate <NSObject>
 
-- (void)adjustProgress:(UISwipeGestureRecognizerDirection)direction;
+//- (void)adjustProgress:(UISwipeGestureRecognizerDirection)direction;
+- (void)adjustProgress:(ProgressView *)view direction:(UISwipeGestureRecognizerDirection)direction;
 
 @end
 
 @interface ProgressView : UIView
 
-
 @property (nonatomic, assign) id<ProgressViewDelegate> delegate;
+@property (nonatomic, readonly) CGPoint     startPoint;         // 开始位置
+@property (nonatomic, readonly) CGPoint     movePoint;          // 移动位置
 
 @end
