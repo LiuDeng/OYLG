@@ -20,15 +20,15 @@
 @property(nonatomic,strong)NSMutableArray * dataArray;
 
 // 下拉刷新.
-@property (nonatomic, strong) UIRefreshControl* playerRefreshControl;
-@property (nonatomic, strong) UIRefreshControl* eventRefreshControl;
-
+@property (nonatomic, strong) UIRefreshControl* playerRefreshControl;   // 主播刷新
+@property (nonatomic, strong) UIRefreshControl* eventRefreshControl;    // 赛事刷新
 // 小菊花
 @property (nonatomic,retain) MBProgressHUD * hud;
 @end
 
 @implementation DotaAllListViewController
 
+#pragma mark ==== 视图出现前
 -(void)loadView
 {
     self.rv = [[PlayerList alloc]initWithFrame:[UIScreen mainScreen].bounds];
@@ -36,7 +36,7 @@
     //=================================
     // 设置navigation的背景图
     backgroundImgView = [[UIImageView alloc] initWithFrame:kScreenFrame];
-    backgroundImgView.image = [UIImage imageNamed:@"background"];
+    backgroundImgView.image = [UIImage imageNamed:@"background.jpg"];
     UIView *alphView = [[UIView alloc] initWithFrame:kScreenFrame];
     alphView.backgroundColor = kBackbroundColorAlpha;
     [backgroundImgView addSubview:alphView];
@@ -52,16 +52,17 @@
     } else {
         self.rv.seg.selectedSegmentIndex = 1;
     }
-    
 }
-
-// 加载数据重新布局.
--(void)loadData {
-    self.dataArray = [DotaAllListModel loadDotaAllList]; 
-    [self.rv.playerTableView reloadData];
-    [self.rv.eventTableView reloadData];
+-(void) viewDidAppear:(BOOL)animated
+{
+    // 加载数据.
+    if (_dataArray != nil) {
+        return;
+    }
+    [self loadData];
+    [_hud removeFromSuperview];
 }
-
+#pragma mark ==== 视图加载完毕
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -97,28 +98,28 @@
     // 开启小菊花
     [self p_setupProgressHud];
 }
-
--(void) viewDidAppear:(BOOL)animated
-{
-    // 加载数据.
-    [self loadData];
-    [_hud removeFromSuperview];
+#pragma mark ==== 刷新数据
+// 加载数据重新布局.
+-(void)loadData {
+    self.dataArray = [DotaAllListModel loadDotaAllList];
+    if (self.dataArray == nil) {
+        return;
+    }
+    [self.rv.playerTableView reloadData];
+    [self.rv.eventTableView reloadData];
 }
-
 // 刷新 所有解说.
 -(void)playerRefreshAction:(id)sender
 {
     [self loadData];
     [_playerRefreshControl endRefreshing];
 }
-
 // 刷新 热门
 -(void)eventRefreshAction:(id)sender
 {
     [self loadData];
     [_eventRefreshControl endRefreshing];
 }
-
 // 小菊花.
 - (void)p_setupProgressHud
 {
@@ -130,25 +131,26 @@
     
     [_hud show:YES];
 }
-
-// 选中 cell 的动作.
+#pragma mark ==== 点击事件
+// 选中 segment 的动作.
 -(void)segAction:(UISegmentedControl * )sender {
     
     [UIView animateWithDuration:0.2 animations:^{
         self.rv.mainScroll.contentOffset = CGPointMake(kScreenWidth * sender.selectedSegmentIndex, 0);
     }];
 }
-
-// 实现 tableview 的代理方法
+#pragma mark ==== tableview 的代理方法
 // 返回每组有多少行.
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView.tag == 119) {
         return _dataArray.count - 2;
     }else {
+        if (_dataArray.count == 0) {
+            return 0;
+        }
         return 2;
     }
 }
-
 // 返回 cell.
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView.tag == 119) {
@@ -180,7 +182,6 @@
         return cell;
     }
 }
-
 // 选中 cell 的方法.
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -199,16 +200,16 @@
     
     [self.navigationController pushViewController:playerProgramListVC animated:YES];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
+// Cell的高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 100;
 }
 
+#pragma mark ==== 内存警告
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 @end

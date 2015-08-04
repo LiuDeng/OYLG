@@ -7,6 +7,7 @@
 //
 
 #import "LOLVideoURLModel.h"
+#import "RequestData.h"
 
 @implementation LOLVideoURLModel
 
@@ -17,22 +18,12 @@
     // 获取 URL
     NSString * newString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
-    // 2.转成 URL
-    NSURL * url = [[NSURL alloc]initWithString:newString];
+    // 请求数据并且解析字典.
+    NSDictionary * dataDict = nil;
+    if ( (dataDict = [RequestData requestData:newString]) == nil) {
+        return nil;
+    }
     
-    // 3.创建请求对象
-    NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:url];
-    
-    // 4.创建 响应 和 错误
-    NSURLResponse * response = nil;
-    NSError * error = nil;
-    
-    // 5.开始请求获取响应,建立连接.同步请求.
-    NSData * data =
-    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    
-    // 解析字典 json
-    NSDictionary * dataDict = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingAllowFragments) error:nil];
     
     return [dataDict valueForKey:@"url"];
 }

@@ -10,12 +10,14 @@
 #import "OYLG-Prefix.pch"
 #import "BrightnessView.h"
 #import "ProgressView.h"
+#import "BarrageView.h"
 
 
-@interface PlayerViewController () <ProgressViewDelegate, BrightnessViewDelegate>
+@interface PlayerViewController () <ProgressViewDelegate, BrightnessViewDelegate, BarrageViewDelegate>
 {
     ProgressView    *progressView;
     BrightnessView  *brightnessView;
+    BarrageView     *barrageView;
 }
 
 
@@ -40,9 +42,16 @@
     [self.view addSubview:progressView];
     [self.view insertSubview:progressView aboveSubview:self.moviePlayer.view];
     progressView.delegate = self;
-        
+    
+    // 弹幕
+    barrageView = [[BarrageView alloc] init];
+    [self.view addSubview:barrageView];
+    [self.view insertSubview:barrageView aboveSubview:progressView];
+    barrageView.delegate = self;
+    
     // 播放
     [self.moviePlayer play];
+    [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(changeText:) userInfo:nil repeats:YES];
     
     // 添加通知
     [self addNotification];
@@ -91,6 +100,7 @@
         _moviePlayer.view.autoresizingMask=UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         [self.view addSubview:_moviePlayer.view];
     }
+    
     return _moviePlayer;
 }
 
@@ -119,7 +129,6 @@
         case MPMoviePlaybackStateStopped:
             NSLog(@"停止播放.");
             [self.moviePlayer stop];
-            
             break;
         default:
             NSLog(@"播放状态:%ld" ,self.moviePlayer.playbackState);
@@ -154,25 +163,63 @@
 }
 
 #pragma mark - 手势代理方法
-// 进度 -- 音量
-- (void)adjustProgress:(ProgressView *)view direction:(UISwipeGestureRecognizerDirection)direction {
+// 轻拍
+- (void)tapAction {
+    if (self.moviePlayer.playbackState == MPMoviePlaybackStatePaused) {
+        [self.moviePlayer play];
+        
+    } else {
+        [self.moviePlayer pause];
+    }
+}
+// 进度
+- (void)changeProgress:(ProgressView *)view {
+    CGFloat max = view.frame.size.width;
+    // 获取偏移值得到偏移比例
+    CGFloat d_gapX = (view.movePoint.x - view.startPoint.x);
+    CGFloat d_gapY = (view.movePoint.y - view.startPoint.y);
+    if (fabs(d_gapY) < fabs(d_gapX)) {
+        if (_moviePlayer.duration ) {
+            // 修改播放时间
+            CGFloat addTime = d_gapX / max * 0.5 *_moviePlayer.duration;
+            _moviePlayer.currentPlaybackTime += addTime;
+            DLog(@"视频总长 : %.2f", _moviePlayer.duration);
+            DLog(@"百分比 : %.2f", addTime / _moviePlayer.duration );
+            DLog(@"addTime : %.2f", addTime);
+        } else {
+            if (d_gapX > 0) {
+                // 快进三十秒
+                _moviePlayer.currentPlaybackTime += 30.0f;
+            } else {
+                // 快退三十秒
+                _moviePlayer.currentPlaybackTime -= 30.0f;
+            }
+            DLog(@"30'S");
+        }
+    }
+    if (_moviePlayer.currentPlaybackTime <= 0) {
+        _moviePlayer.currentPlaybackTime = 0;
+    } else if (_moviePlayer.currentPlaybackTime > _moviePlayer.duration){
+        _moviePlayer.currentPlaybackTime = _moviePlayer.duration;
+    }
     
-    if (direction == UISwipeGestureRecognizerDirectionLeft) {
-        [_moviePlayer beginSeekingBackward];
-        DLog(@"调节视频进度快退");
-    } else if (direction == UISwipeGestureRecognizerDirectionRight) {
-        [_moviePlayer beginSeekingForward];
-        DLog(@"调节视频进度快进");
-    } else if (direction == UISwipeGestureRecognizerDirectionUp || direction ==UISwipeGestureRecognizerDirectionDown) {
+}
+
+// 音量
+- (void)adjustVolume:(ProgressView *)view direction:(UISwipeGestureRecognizerDirection)direction {
+    
+    CGFloat d_gapY = view.startPoint.y - view.movePoint.y;
+    
+    if (direction == UISwipeGestureRecognizerDirectionUp || direction ==UISwipeGestureRecognizerDirectionDown) {
         float volume = [[MPMusicPlayerController applicationMusicPlayer] volume];
         float newVolume = volume;
-        if (view.startPoint.y == view.movePoint.y) {
+        if (d_gapY == 0) {
             
-        } else if (view.startPoint.y > view.movePoint.y) {
+        } else if (d_gapY > 0) {
             newVolume += 0.1;
             DLog(@"调节音量+");
             
-        } else if (view.startPoint.y < view.movePoint.y) {
+        } else if (d_gapY < 0) {
             newVolume -= 0.1;
             DLog(@"调节音量-");
         }
@@ -183,45 +230,8 @@
         }
         [[MPMusicPlayerController applicationMusicPlayer] setVolume:newVolume];
     }
-
-
-
 }
-/**
-- (void)adjustProgress:(UISwipeGestureRecognizerDirection)direction {
-    // 调节视频进度
-    if (direction == UISwipeGestureRecognizerDirectionLeft) {
-        [_moviePlayer beginSeekingBackward];
-        DLog(@"调节视频进度快退");
-    } else if (direction == UISwipeGestureRecognizerDirectionRight) {
-        [_moviePlayer beginSeekingForward];
-        DLog(@"调节视频进度快进");
-    } else if (direction == UISwipeGestureRecognizerDirectionUp) {
-        
-        float volume = [[MPMusicPlayerController applicationMusicPlayer] volume];
-        float newVolume = volume;
-        if (nowPoint.x == _lastPoint.x) {
-            
-        } else {
-            if (nowPoint.x < _lastPoint.x) {
-                newVolume += 0.01;
-            } else {
-                newVolume -= 0.01;
-            }
-        }
-        if (newVolume < 0) {
-            newVolume = 0;
-        } else if (newVolume > 1.0) {
-            newVolume = 1.0;
-        }
-        
-        [[MPMusicPlayerController applicationMusicPlayer] setVolume:newVolume];
-        DLog(@"调节音量+");
-    } else if (direction == UISwipeGestureRecognizerDirectionDown) {
-        DLog(@"调节音量-");
-    }
-}
- */
+  // 用swip加手势调节音量,每次手势只能是一个方向,还会滑动不被识别;
 // 亮度
 - (void)changeBrightness:(CGFloat)value {
     DLog(@"========%.2f", value);
@@ -246,8 +256,16 @@
         DLog(@"亮度--:%.2f", value1);
     }
     
-    
 }
+- (void)sonViewTouchDownPoint: (CGPoint)touchPoint from:(id)sender {
 
+}
+- (void)changeText:(id)sender {
+    barrageView.barrageLabel.text = [NSString stringWithFormat:@"%f",self.moviePlayer.currentPlaybackTime];
+    CGRect laberRect = [barrageView.barrageLabel.text boundingRectWithSize:CGSizeMake(1000, 25) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15.f]} context:nil];
+    DLog(@"labelWidth%.2f", laberRect.size.width);
+    barrageView.barrageLabel.frame = CGRectMake(0, 0, laberRect.size.width, barrageView.frame.size.height);
+        DLog(@"text : %@", barrageView.barrageLabel.text);
+}
 
 @end

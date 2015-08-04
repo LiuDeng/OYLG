@@ -29,6 +29,7 @@
 
 @implementation LOLAllListViewController
 
+#pragma mark ==== 视图出现前
 -(void)loadView {
     // 替换根视图
     self.rv = [[PlayerList alloc]initWithFrame:[UIScreen mainScreen].bounds];
@@ -36,7 +37,7 @@
     //=================================
     // 设置navigation的背景图
     backgroundImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, kNavigationFrame.size.height)];
-    backgroundImgView.image = [UIImage imageNamed:@"lol2"];
+    backgroundImgView.image = [UIImage imageNamed:@"lol2.jpg"];
     UIView *alphView = [[UIView alloc] initWithFrame:kScreenFrame];
     alphView.backgroundColor = kBackbroundColorAlpha;
     [backgroundImgView addSubview:alphView];
@@ -44,6 +45,7 @@
     [self.navigationController.view sendSubviewToBack:backgroundImgView];
     //=================================
 }
+// 视图将要出现
 - (void)viewWillAppear:(BOOL)animated {
     
     if (self.rv.mainScroll.contentOffset.x == 0) {
@@ -53,13 +55,18 @@
     }
     
 }
-// 加载数据重新布局.
--(void)loadData {
-    self.dataArray = [LOLAllListModel loadLOLAllList]; 
-    [self.rv.playerTableView reloadData];
-    [self.rv.eventTableView reloadData];
+// 视图已经出现
+-(void) viewDidAppear:(BOOL)animated
+{
+    // 加载数据.
+    if (_dataArray != nil) {
+        return;
+    }
+    [self loadData];
+    [_hud removeFromSuperview];
 }
 
+#pragma mark ==== 视图加载完毕
 - (void)viewDidLoad {
     [super viewDidLoad];
  
@@ -93,28 +100,25 @@
     
     [self p_setupProgressHud];
 }
-
--(void) viewDidAppear:(BOOL)animated
-{
-    // 加载数据.
-    [self loadData];
-    [_hud removeFromSuperview];
+#pragma mark ==== 刷新数据
+// 加载数据重新布局.
+-(void)loadData {
+    self.dataArray = [LOLAllListModel loadLOLAllList];
+    [self.rv.playerTableView reloadData];
+    [self.rv.eventTableView reloadData];
 }
-
 // 刷新 所有解说.
 -(void)playerRefreshAction:(id)sender
 {
     [self loadData];
     [_playerRefreshControl endRefreshing];
 }
-
 // 刷新 热门
 -(void)eventRefreshAction:(id)sender
 {
     [self loadData];
     [_eventRefreshControl endRefreshing];
 }
-
 // 小菊花.
 - (void)p_setupProgressHud
 {
@@ -126,24 +130,25 @@
     
     [_hud show:YES];
 }
-
-// 选中 cell 的动作.
+#pragma mark ==== 点击事件
+// 选中 segment 的动作.
 -(void)segAction:(UISegmentedControl * )sender {
     [UIView animateWithDuration:0.2 animations:^{
         self.rv.mainScroll.contentOffset = CGPointMake(kScreenWidth * sender.selectedSegmentIndex, 0);
     }];
 }
-
-// 实现 tableview 的代理方法
+#pragma mark ==== tableview 的代理方法
 // 返回每组有多少行.
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView.tag == 119) {
         return _dataArray.count - 2;
     }else {
+        if (_dataArray.count == 0) {
+            return 0;
+        }
         return 2;
     }
 }
-
 // 返回 cell.
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView.tag == 119) {
@@ -178,7 +183,6 @@
         return cell;
     }
 }
-
 // 选中 cell 的方法.
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -197,15 +201,17 @@
     
     [self.navigationController pushViewController:playerProgramListVC animated:YES];
 }
-
+// Cell高度
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100;
+}
+#pragma mark ==== 内存警告
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 100;
-}
+
 
 @end

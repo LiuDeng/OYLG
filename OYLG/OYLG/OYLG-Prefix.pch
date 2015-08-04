@@ -19,15 +19,11 @@
 
 #define kBackbroundColorAlpha [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6]
 
-#define kVolumeViewTag 234
-#define kBrightViewTag 235
-#define kProgressViewTag 236
 
 #ifdef DEBUG
 #define  DLog(...) NSLog(__VA_ARGS__)
 #else
 #define DLog(...)
 #endif
-
 
 #endif

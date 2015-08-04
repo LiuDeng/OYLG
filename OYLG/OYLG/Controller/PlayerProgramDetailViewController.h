@@ -12,11 +12,17 @@
 @interface PlayerProgramDetailViewController : UIViewController
 @property(nonatomic,strong) DotaSomeOneProgramListModel * detailData;
 
-@property (weak, nonatomic) IBOutlet UILabel *videoTitle;
-@property (weak, nonatomic) IBOutlet UIImageView *thumImage;
-@property (weak, nonatomic) IBOutlet UILabel *Dtime;
-@property (weak, nonatomic) IBOutlet UILabel *UpdateTime;
-@property (weak, nonatomic) IBOutlet UIButton *flvButton;
-@property (weak, nonatomic) IBOutlet UIButton *mp4Button;
-@property (weak, nonatomic) IBOutlet UIButton *HDButton;
+@property (weak, nonatomic) IBOutlet UILabel *videoTitle;           // 视频名称
+@property (weak, nonatomic) IBOutlet UIImageView *thumImage;        // 视频截图
+@property (weak, nonatomic) IBOutlet UILabel *Dtime;                // 视频时间
+@property (weak, nonatomic) IBOutlet UILabel *UpdateTime;           // 更新时间
+@property (weak, nonatomic) IBOutlet UIButton *flvButton;           // 标清
+@property (weak, nonatomic) IBOutlet UIButton *mp4Button;           // 高清
+@property (weak, nonatomic) IBOutlet UIButton *HDButton;            // 超清
+@property (weak, nonatomic) IBOutlet UIButton *commentsButton;      // 下载
+@property (weak, nonatomic) IBOutlet UIButton *collectionButton;    // 收藏
+@property (weak, nonatomic) IBOutlet UIButton *thumbButton;         // 点赞
+@property (weak, nonatomic) IBOutlet UITableView *commentsTableView;    // 评论
+
+
 @end

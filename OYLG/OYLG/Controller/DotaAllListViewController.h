@@ -10,6 +10,6 @@
 
 @interface DotaAllListViewController : UIViewController
 {
-    UIImageView     *backgroundImgView;
+    UIImageView     *backgroundImgView;     // 设置navigation的背景图
 }
 @end

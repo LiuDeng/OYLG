@@ -29,8 +29,8 @@
 
 @implementation LOLSomeOneListTableViewController
 
--(void)loadView
-{
+#pragma mark ==== 视图出现前
+-(void)loadView {
     // navigation View 原点
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -42,7 +42,7 @@
     //=================================
     // 设置tableView出现时的背景图 (为了解决页面跳转是出现卡顿现象)
     backgroundImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, - 64, kScreenWidth, kScreenHeight)];
-    backgroundImgView.image = [UIImage imageNamed:@"lol2"];
+    backgroundImgView.image = [UIImage imageNamed:@"lol2.jpg"];
     UIView *alphView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     alphView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
     [backgroundImgView addSubview:alphView];
@@ -50,7 +50,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     //=================================
 }
-
+// 视图将要出现
 - (void)viewDidAppear:(BOOL)animated {
     
     // 移除tableView.bacbroundView图显示navigation.View.backgroundView
@@ -63,11 +63,13 @@
 
     
     // 界面出现之后,加载数据,菊花已经飞起.
+    if (_dataArray != nil) {
+        return;
+    }
     [self loadData:_aId];
     [_hud removeFromSuperview];
-     
 }
-
+#pragma mark ==== 视图加载完毕
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -94,10 +96,9 @@
     self.pullTableView.pullTextColor = [UIColor whiteColor];
     
 }
-
+#pragma mark ==== 数据加载与刷新
 // 创建小菊花方法.
-- (void)p_setupProgressHud
-{
+- (void)p_setupProgressHud {
     self.hud = [[MBProgressHUD alloc] initWithView:self.view];
     _hud.frame = self.view.bounds;
     _hud.minSize = CGSizeMake(100, 100);
@@ -106,38 +107,58 @@
     
     [_hud show:YES];
 }
-
-// 下拉刷新处理方法.
--(void)RefreshAction:(id)sender
-{
-    [self loadData:_aId];
-    [self.refreshControl endRefreshing];
-}
-
--(void)loadData:(NSString *)aId
-{
+// 加载数据
+-(void)loadData:(NSString *)aId {
     _dataArray = [LOLSomeOneProgramListModel loadLOLSomeOneProgramList:aId];
     [self.tableView reloadData];
 }
-
-- (void)didReceiveMemoryWarning {
-    
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated
+// 下拉刷新处理方法.
+-(void)RefreshAction:(id)sender {
+    [self loadData:_aId];
+    [self.refreshControl endRefreshing];
 }
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    return 1;
+#pragma mark ==== 上拉 代理方法
+// 加载跟多数据
+- (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView {
+    self.pullTableView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight-20 - 44 -49);
+    [self performSelector:@selector(loadMoreDataToTable) withObject:nil afterDelay:1.0f];
 }
-
+// @selector方法
+- (void)loadMoreDataToTable {
+    static NSInteger offset = 50;
+    NSMutableArray * tmp = [LOLSomeOneProgramListModel loadLOLSomeOneProgramListMoreData:_aId index:offset];
+    [_dataArray addObjectsFromArray:tmp];
+    [self.pullTableView reloadData];
+    offset += 50;
+    self.pullTableView.pullTableIsLoadingMore = NO;
+}
+// 刷新页面
+- (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView {
+    self.pullTableView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight - 20 - 44 - 49);
+    
+    [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
+}
+// @selector方法
+- (void)refreshTable {
+    [self loadData:_aId];
+    self.pullTableView.pullLastRefreshDate = [NSDate date];
+    self.pullTableView.pullTableIsRefreshing = NO;
+}
+#pragma mark ==== 点击事件
+// 实现 navigation 返回按钮
+-(void) leftBarButtonAction:(UIBarButtonItem * )sender {
+    if ([_aId isEqualToString:@"hot"] || [_aId isEqualToString:@"all"]) {
+        self.block();
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+#pragma mark ==== tableview 的代理方法
+// 多少行
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _dataArray.count;
 }
-
-
+// 返回Cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PlayerlListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"    forIndexPath:indexPath];
     
@@ -146,6 +167,8 @@
     cell.nameLabel.numberOfLines = 0;
     
     cell.detailLabel.text = [_dataArray[indexPath.row] date1];
+    cell.videoTimeLabel.alpha = 0.8;
+    cell.videoTimeLabel.text = [_dataArray[indexPath.row] time];
     
     // cell选中时的样式
     cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
@@ -157,63 +180,22 @@
     
     return cell;
 }
-
 // 选中 cell 的动作.
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     PlayerProgramDetailViewController * detailVC = [[PlayerProgramDetailViewController alloc] init];
     detailVC.detailData = _dataArray[indexPath.row];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
-
+// Cell高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 80;
 }
-
-// 实现返回按钮
--(void) leftBarButtonAction:(UIBarButtonItem * )sender
-{
-    if ([_aId isEqualToString:@"hot"] || [_aId isEqualToString:@"all"]) {
-        self.block();
-    }
+#pragma mark ==== 内存警告
+- (void)didReceiveMemoryWarning {
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated
 }
-
-
-#pragma mark开始上拉加载数据的代理方法.(pulltableview)
-- (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView
-{
-    self.pullTableView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight - 20 - 44 - 49);
-    
-    [self performSelector:@selector(refreshTable) withObject:nil afterDelay:1.0f];
-}
-- (void)refreshTable
-{
-    [self loadData:_aId];
-    self.pullTableView.pullLastRefreshDate = [NSDate date];
-    self.pullTableView.pullTableIsRefreshing = NO;
-}
-
-// 上拉加载数据.
-- (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView
-{
-    self.pullTableView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight-20 - 44 -49);
-    [self loadData:_aId];
-    [self performSelector:@selector(loadMoreDataToTable) withObject:nil afterDelay:1.0f];
-}
-
-- (void)loadMoreDataToTable
-{
-    static NSInteger offset = 50;
-    NSMutableArray * tmp = [LOLSomeOneProgramListModel loadLOLSomeOneProgramListMoreData:_aId index:offset];
-    [_dataArray addObjectsFromArray:tmp];
-    [self.pullTableView reloadData];
-    offset += 50;
-    self.pullTableView.pullTableIsLoadingMore = NO;
-}
-
-
 
 @end

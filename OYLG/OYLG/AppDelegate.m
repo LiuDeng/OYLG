@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "RootTabBarViewController.h"
 #import "OYLG-Prefix.pch"
+#import <AVOSCloud/AVOSCloud.h>
 
 @interface AppDelegate ()
 
@@ -34,6 +35,17 @@
     
     self.window.rootViewController = rootVC;
     // Override point for customization after application launch.
+    
+    
+    
+#pragma mark LeanCloud
+    // 如果使用美国站点，请加上这行代码 [AVOSCloud useAVCloudUS];
+    [AVOSCloud setApplicationId:@"5zsgxjmb43v25q7pf6psagmji7xbi6a559n1b9w0a6neezhm"
+                      clientKey:@"1sa15p4y8w2qh07r4s8vh67epfczmm4w03rfwpgoazygnxlh"];
+    
+    // 跟踪 app 打开情况.
+    [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+        
     
     return YES;
 }
