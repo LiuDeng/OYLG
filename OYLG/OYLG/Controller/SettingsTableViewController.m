@@ -14,13 +14,14 @@
 #import "UserLoginViewController.h"
 #import "UserRegistViewController.h"
 
+
 @interface SettingsTableViewController ()
 
 @property(nonatomic,strong)UILabel *labelMenu;
 
-@property(nonatomic,strong)UIButton *registerBut;//注册
+@property(nonatomic,strong)UIButton *registerBut;
 
-@property(nonatomic,strong)UIButton *loginBut;//登录
+@property(nonatomic,strong)UIButton *loginBut;
 
 @end
 
@@ -42,6 +43,8 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"SettingsTableViewCell" bundle:nil] forCellReuseIdentifier:@"Settingscell"];
     
     [self setExtraCellLineHidden:self.tableView];
+    
+    
     
 }
 #pragma mark ==== tableview 的代理方法
@@ -183,6 +186,20 @@
     [self.loginBut addTarget:self action:@selector(loginButAction:) forControlEvents:(UIControlEventTouchUpInside)];
     [view addSubview:_loginBut];
     
+    // 设置全局标记,表示已经登录了.
+    NSUserDefaults * nd = [NSUserDefaults standardUserDefaults];
+    if([[nd valueForKey:@"LoginStatus"] isEqualToString:@"YES"])
+    {
+        [self.registerBut setTitle:@"注销" forState:(UIControlStateNormal)];
+    }
+    
+    if([[self.registerBut titleForState:(UIControlStateNormal)] isEqualToString:@"注销"])
+    {
+        self.loginBut.userInteractionEnabled = NO ;
+    }else
+    {
+        self.loginBut.userInteractionEnabled = YES ;
+    }
     
     [tableView setTableFooterView:view];
     
@@ -190,9 +207,23 @@
 #pragma mark ==== 点击事件
 // 登录
 -(void)registerButAction:(UIButton *)sender {
-    NSLog(@"登录");
-    UserLoginViewController * LoginVC = [[UserLoginViewController alloc] init];
+    if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"注销"] ) {
+        NSUserDefaults * nd = [NSUserDefaults standardUserDefaults];
+        [nd setValue:@"NO" forKey:@"LoginStatus"];
+        
+        NSLog(@"%@",[nd valueForKey:@"LoginStatus"]);
+        [sender setTitle:@"登录"forState:(UIControlStateNormal)];
+        self.loginBut.userInteractionEnabled = YES ;
+        return ;
+    }
     
+    UserLoginViewController * LoginVC = [[UserLoginViewController alloc] init];
+    // 如果登录成功,将 button 修改为注销.
+    LoginVC.changeButtonStatus = ^(void)
+    {
+        [sender setTitle:@"注销" forState:(UIControlStateNormal)];
+        self.loginBut.userInteractionEnabled = NO ;
+    };
     [self.navigationController  pushViewController:LoginVC animated:YES];
 }
 
@@ -203,19 +234,19 @@
     
     [self.navigationController  pushViewController:RegistVC animated:YES];
 }
+
 //蜂窝数据下载
 -(void)switchAction:(id)sender
 {
     UISwitch *switchButton = (UISwitch*)sender;
     BOOL isButtonOn = [switchButton isOn];
     if (isButtonOn) {
-        
-        
+        [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"WWANPlayAbility"];
     }else {
-        
-        
+        [[NSUserDefaults standardUserDefaults] setValue:@"NO" forKey:@"WWANPlayAbility"];
     }
 }
+
 #pragma mark ==== 内存警告
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

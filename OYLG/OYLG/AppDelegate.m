@@ -40,12 +40,11 @@
     
 #pragma mark LeanCloud
     // 如果使用美国站点，请加上这行代码 [AVOSCloud useAVCloudUS];
-    [AVOSCloud setApplicationId:@"5zsgxjmb43v25q7pf6psagmji7xbi6a559n1b9w0a6neezhm"
-                      clientKey:@"1sa15p4y8w2qh07r4s8vh67epfczmm4w03rfwpgoazygnxlh"];
+    [AVOSCloud setApplicationId:@"j4q8x556zjad3nv2qjk99y6i4mx2jvuo6xvj1rgux2x2imwd"
+                      clientKey:@"lhifi0p9kld9u9q0myzn2exkxfhh4pe15kbiz7mdqeekl5b2"];
     
     // 跟踪 app 打开情况.
     [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-        
     
     return YES;
 }

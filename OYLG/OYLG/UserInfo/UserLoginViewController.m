@@ -10,7 +10,10 @@
 #import <AVOSCloud/AVOSCloud.h>
 #import "UserRegistViewController.h"
 
+
+
 @interface UserLoginViewController ()
+
 
 @end
 
@@ -26,6 +29,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)loginAction:(id)sender {
+
     if ([_userNameTextField.text isEqualToString:@""] || [_userPasswdTextField.text isEqualToString:@""] ) {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"用户名或密码不能为空" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
         [alert show];
@@ -33,16 +37,24 @@
     }
     
     // 用户登录.
-    [AVUser logInWithUsernameInBackground:@"username" password:@"password" block:^(AVUser *user, NSError *error) {
+    __block typeof(self) weakSelf = self;
+    [AVUser logInWithUsernameInBackground:_userNameTextField.text password:_userPasswdTextField.text block:^(AVUser *user, NSError *error) {
         if (user != nil) {
-            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"登录成功" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"登录成功" delegate:weakSelf cancelButtonTitle:@"确定" otherButtonTitles:nil];
             [alert show];
+            
+            // 设置全局标记,表示已经登录了.
+            NSUserDefaults * nd = [NSUserDefaults standardUserDefaults];
+            [nd setValue:@"YES" forKey:@"LoginStatus"];
+            
+            weakSelf.changeButtonStatus();
+            [self.navigationController popViewControllerAnimated:YES];
+            
         } else {
-            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"用户名或者密码错误" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"用户名或者密码错误" delegate:weakSelf cancelButtonTitle:@"确定" otherButtonTitles:nil];
             [alert show];
         }
     }];
-    
 }
 - (IBAction)registAction:(id)sender {
     UserRegistViewController * RegistVC = [[UserRegistViewController alloc] init];

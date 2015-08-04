@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-
+typedef void(^changeButton)(void);
 @interface UserLoginViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userPasswdLabel;
@@ -17,6 +17,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *registButton;
-
+@property(nonatomic,copy)changeButton changeButtonStatus;
 
 @end
